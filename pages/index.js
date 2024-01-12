@@ -1,75 +1,42 @@
-import { Box, Button, color, InputRightAddon, Text } from "@chakra-ui/react"
+import { Box, Button, color, Input, InputRightAddon, Text } from "@chakra-ui/react"
 import _ from "lodash"
-// import { useState } from "react"
+import Script from "next/script"
+import { useState } from "react"
 
-// export const MyHeader = () => {
-//   const onClick = () => {
-//     alert("you clicked me")
-//   }
-//   return <Box {...{padding: 5, bg: 'orange'}}>
-//     <Button {...{colorScheme: 'blue', onClick}}>Yo its button</Button>
-//   </Box>
-// }
+const MyHeader = () => {
+  return <Text {...{fontSize:'26px', align:'center', color:'white'}}>Conversion Calculator App</Text>
+}
 
-// export const MyHeader2 = () => {
-//   const [bg, setBg] = useState('orange')
-//   const [isBoxShown, setShown] = useState(false)
-//   // const shown = false
-//   // bg = useState('yellow')
+const NumInput = () => {
+  <input {...{type:'number', placeholder:'input goes here'}}/>
+}
 
-//   const onClick = () => {
-//     // const myArray = ["shea", "marcus"]
-  
-//     // const [name1, name2] = myArray
-//     // const name1 = myArray[1]
-//     // const name2 = myArray[2]
+const kelvinToCelsius = (num) => {
+  return num - 273
+}
 
-//     // console.log(isBoxShown)
+export const TemperaturePage = () => {
+  const [degreesKelvin, setDegreesKelvin] = useState()
 
-//     setShown(!isBoxShown)
-//     // if (shown) {
-//     //   setShown(false)
-//     // } else {
-//     //   setShown(true)
-//     // }
+  const onChange = (evt) => {
+    console.log('input event', evt)
 
-//     setBg(_.sample(["blue", "red", "green", "yellow"]))
-//   }
-
-//   return <Box {...{padding: 5, bg}}>
-//     <Button {...{colorScheme: 'blue', onClick}}>Yo its button</Button>
-//     {isBoxShown && <Box {...{bg: 'yellow', rounded: "full"}}>Hi</Box>}
-//   </Box>
-// }
-
-export const MyHeader3 = () => {
-  //set a value for kelvin --> how do I get kelvin to be a variable I can input vs having to define in my code?
-  let kelvin = 273
-
-  //create a function that will convert kelvin to celsius
-  function handleSubmit(kelvin) {
-
-    //I want to take kelvin and convert it to celsius
-    let celsius = kelvin - 273;
-
-    //when I call this function I want it to do the conversions and display in my Box
-    return celsius
-
+    setDegreesKelvin(_.toNumber(evt.target.value))
   }
 
-  //create a space to display the information to the DOM
-  return <Box{...{margin: "20px", bg: "white"}}> 
-    <Text> 
-      {/* I want to return celsius here based on the input from my form */}
-      {kelvin} degrees Kelvin is {handleSubmit(kelvin)} degrees Celsius
-    </Text>
+  return <Box {...{margin:"20px", bg:"white"}}>
+    <label> Degrees Kelvin to Convert: </label>
+    <input {...{type:'number', placeholder:'input goes here', onChange}}/>
+
+    {degreesKelvin && <Text>{degreesKelvin} degrees Kelvin is {kelvinToCelsius(degreesKelvin)} degrees Celsius
+    </Text>}
   </Box>
 }
 
 export default function Home() {
   return <Box {...{bg: 'blue', padding: 2}}>
-    {/* <MyHeader />
-    <MyHeader2 /> */}
-    <MyHeader3 />
+    <MyHeader/>
+    <NumInput/>
+    <TemperaturePage />
   </Box>
 }
