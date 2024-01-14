@@ -2,6 +2,8 @@ import { Box, Button, color, Input, InputRightAddon, Text } from "@chakra-ui/rea
 import _ from "lodash"
 import Script from "next/script"
 import { useState } from "react"
+import Link from "next/link" // use this one
+
 
 const MyHeader = () => {
   return <Text {...{fontSize:'26px', align:'center', color:'white'}}>Conversion Calculator App</Text>
