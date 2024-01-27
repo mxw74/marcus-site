@@ -51,6 +51,18 @@ const Addition = ({inputVal1, inputVal2, setOppAddition}) => {
   </>
 }
 
+const Subtraction = ({inputVal1, inputVal2, setOppSubtraction}) => {
+
+  const onSubtraction = () => {
+   setOppSubtraction(inputVal1 - inputVal2) // cannot get this to add versus concatenate
+  }
+  
+  return <>
+    <Button {...{onClick: onSubtraction}}>-</Button>
+  </>
+}
+
+
 // const OppButn = ({onClick, oppSelected}) => {
 //   onClick = () => {
 //     console.log({oppSelected})
@@ -83,6 +95,7 @@ export default function Calculator() {
   const [multiplyResults, setOppMultiply] = useState()
   const [divisionResults, setOppDivide] = useState()
   const [additionResults, setOppAddition] = useState()
+  const [subtractionResults, setOppSubtraction] = useState()
 
   return <Container {...{bg:'pink', p: 5, color: 'black'}}>
     <Box {...{align: 'center', p: 5}}>
@@ -95,7 +108,11 @@ export default function Calculator() {
       <Multiplication {...{inputVal1, inputVal2, setOppMultiply, multiplyResults}} />
       <Division {...{inputVal1, inputVal2, divisionResults, setOppDivide}}/>
       <Addition {...{inputVal1, inputVal2, additionResults, setOppAddition}}/>
+      <Subtraction {...{inputVal1, inputVal2, subtractionResults, setOppSubtraction}} />
     </Box>
-    <Box>Your Results are: {multiplyResults}{divisionResults}{additionResults}</Box>
+    <Box>Your Multiplication Results Are: {multiplyResults}</Box>
+    <Box>Your Division Results Are: {divisionResults}</Box>
+    <Box>Your Addition Results Are: {additionResults}</Box>
+    <Box>Your Subtraction Results Are: {subtractionResults}</Box>
   </Container>
 }
