@@ -1,30 +1,5 @@
-import { Box, Button, Container, Heading, Input, SimpleGrid, Text } from "@chakra-ui/react"
+import { Box, Button, Container, HStack, Heading, Input, SimpleGrid, Text } from "@chakra-ui/react"
 import { useState } from "react"
-
-// const SheaInput = () => {
-//   const [inputVal, setInputVal] = useState()
-//   const onChange = (evt) => {
-//     setInputVal(evt.target.value)
-//   }
-
-//   return <>
-//     <Input {...{onChange}} />
-//     current val is: {inputVal}
-//   </>
-// }
-
-// const SheaInput2 = () => {
-//   const [inputVal, setInputVal] = useState()
-//   const onChange = (evt) => {
-//     setInputVal(evt.target.value)
-//   }
-
-//   return <>
-//     <Input {...{onChange}} />
-//     current val is: {inputVal}
-//   </>
-// }
-
 
 const NumInputs = ({inputVal1, inputVal2, setInputVal1, setInputVal2}) => {
 
@@ -38,53 +13,76 @@ const NumInputs = ({inputVal1, inputVal2, setInputVal1, setInputVal2}) => {
   return <>
     <Input {...{onChange: onChange1, type: 'number'}} />
     current val is: {inputVal1}
-    <Input {...{onChange: onChange2}} />
+    <Input {...{onChange: onChange2, type: 'number'}} />
     current val is: {inputVal2}
   </>
-  // const [val, setVal] = useState()
-  // const handleChange = (event) => setVal(event.target.val)
-  // console.log(val)
-
-
-  // return <Input {...{type: 'number', bg: 'white', value: val, onChange: handleChange}}/>
-
 }
 
-const InputTwo = () => {
-  return <Input {...{type: 'number', bg: 'white'}}/>
-}
+const Multiplication = ({inputVal1, inputVal2, setOppMultiply}) => {
 
-{/* <Button {...{p: 2.5, fontWeight: 'bolder', color: 'white', bg: 'darkgray', border, align: 'center', hover: 'white', onClick, value: numClicked}}>
-    {numClicked}
-  </Button> */}
-
-const OppButn = ({onClick, oppSelected}) => {
-  onClick = () => {
-    console.log({oppSelected})
+  const onMultiply = () => {
+   setOppMultiply(inputVal1 * inputVal2)
   }
-
-  return <Button {...{onClick, value: oppSelected, m: 5}}>
-  {oppSelected}
-</Button>
+  
+  return <>
+    <Button {...{onClick: onMultiply}}>X</Button>
+  </>
 }
 
+const Division = ({inputVal1, inputVal2, setOppDivide}) => {
 
-const Opperators = ({onClick, oppSelected}) => {
-
-  return <Container {...{align: 'center'}}>
-    <SimpleGrid {...{display: 'inline'}}>
-      <OppButn {...{onClick, oppSelected: 'X'}}>{oppSelected}</OppButn>
-      <OppButn {...{onClick, oppSelected: '/'}}>{oppSelected}</OppButn>
-      <OppButn {...{onClick, oppSelected: '+'}}>{oppSelected}</OppButn>
-      <OppButn {...{onClick, oppSelected: '-'}}>{oppSelected}</OppButn>
-    </SimpleGrid>
-  </Container>
+  const onDivide = () => {
+   setOppDivide(inputVal1 / inputVal2)
+  }
+  
+  return <>
+    <Button {...{onClick: onDivide}}>/</Button>
+  </>
 }
+
+const Addition = ({inputVal1, inputVal2, setOppAddition}) => {
+
+  const onAddition = () => {
+   setOppAddition(inputVal1 + inputVal2) // cannot get this to add versus concatenate
+  }
+  
+  return <>
+    <Button {...{onClick: onAddition}}>+</Button>
+  </>
+}
+
+// const OppButn = ({onClick, oppSelected}) => {
+//   onClick = () => {
+//     console.log({oppSelected})
+//   }
+
+
+
+//   return <Button {...{onClick, value: oppSelected, m: 5}}>
+//   {oppSelected}
+// </Button>
+// }
+
+
+// const Opperators = ({onClick, oppSelected}) => {
+
+//   return <Container {...{align: 'center'}}>
+//     <SimpleGrid {...{display: 'inline'}}>
+//       <OppButn {...{onClick, oppSelected: 'X'}}>{oppSelected}</OppButn>
+//       <OppButn {...{onClick, oppSelected: '/'}}>{oppSelected}</OppButn>
+//       <OppButn {...{onClick, oppSelected: '+'}}>{oppSelected}</OppButn>
+//       <OppButn {...{onClick, oppSelected: '-'}}>{oppSelected}</OppButn>
+//     </SimpleGrid>
+//   </Container>
+// }
 
 
 export default function Calculator() {
   const [inputVal1, setInputVal1] = useState()
   const [inputVal2, setInputVal2] = useState()
+  const [multiplyResults, setOppMultiply] = useState()
+  const [divisionResults, setOppDivide] = useState()
+  const [additionResults, setOppAddition] = useState()
 
   return <Container {...{bg:'pink', p: 5, color: 'black'}}>
     <Box {...{align: 'center', p: 5}}>
@@ -92,6 +90,12 @@ export default function Calculator() {
       <Text>Type in the two numbers you want to calculate with then select an opperator to be displayed</Text>
     </Box>
     <NumInputs {...{inputVal1, inputVal2, setInputVal1, setInputVal2}} />
-    <Opperators />
+    <br />
+    <Box {...{align: 'center'}}>
+      <Multiplication {...{inputVal1, inputVal2, setOppMultiply, multiplyResults}} />
+      <Division {...{inputVal1, inputVal2, divisionResults, setOppDivide}}/>
+      <Addition {...{inputVal1, inputVal2, additionResults, setOppAddition}}/>
+    </Box>
+    <Box>Your Results are: {multiplyResults}{divisionResults}{additionResults}</Box>
   </Container>
 }
