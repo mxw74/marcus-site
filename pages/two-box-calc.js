@@ -11,10 +11,12 @@ const NumInputs = ({inputVal1, inputVal2, setInputVal1, setInputVal2}) => {
   }
 
   return <>
+    First Number:
     <Input {...{onChange: onChange1, type: 'number'}} />
-    current val is: {inputVal1}
+    <br />
+    <br />
+    Second Number:
     <Input {...{onChange: onChange2, type: 'number'}} />
-    current val is: {inputVal2}
   </>
 }
 
@@ -101,7 +103,7 @@ export default function Calculator() {
   const [additionResults, setOppAddition] = useState()
   const [subtractionResults, setOppSubtraction] = useState()
 
-  return <Container {...{bg:'pink', p: 5, color: 'black'}}>
+  return <Container {...{bg:'pink', p: 5, color: 'black', minW: '100%'}}>
     <Box {...{align: 'center', p: 5}}>
       <Heading>My Calculator</Heading>
       <Text>Type in the two numbers you want to calculate with then select an opperator to be displayed</Text>
