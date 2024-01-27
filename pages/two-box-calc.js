@@ -18,6 +18,10 @@ const NumInputs = ({inputVal1, inputVal2, setInputVal1, setInputVal2}) => {
   </>
 }
 
+const OppButn = ({oppSelected, onClick}) => {
+  return <Button {...{m: 5, variant: 'outline', colorScheme: 'blackAlpha', onClick}}>{oppSelected}</Button>
+}
+
 const Multiplication = ({inputVal1, inputVal2, setOppMultiply}) => {
 
   const onMultiply = () => {
@@ -25,7 +29,7 @@ const Multiplication = ({inputVal1, inputVal2, setOppMultiply}) => {
   }
   
   return <>
-    <Button {...{onClick: onMultiply}}>X</Button>
+    <OppButn {...{onClick: onMultiply, oppSelected: 'X'}}/>
   </>
 }
 
@@ -36,18 +40,18 @@ const Division = ({inputVal1, inputVal2, setOppDivide}) => {
   }
   
   return <>
-    <Button {...{onClick: onDivide}}>/</Button>
+    <OppButn {...{onClick: onDivide, oppSelected: '/'}} />
   </>
 }
 
 const Addition = ({inputVal1, inputVal2, setOppAddition}) => {
 
   const onAddition = () => {
-   setOppAddition(inputVal1 + inputVal2) // cannot get this to add versus concatenate
+   setOppAddition(Number(inputVal1) + Number(inputVal2)) // cannot get this to add versus concatenate
   }
   
   return <>
-    <Button {...{onClick: onAddition}}>+</Button>
+    <OppButn {...{onClick: onAddition, oppSelected: '+'}} />
   </>
 }
 
@@ -58,7 +62,7 @@ const Subtraction = ({inputVal1, inputVal2, setOppSubtraction}) => {
   }
   
   return <>
-    <Button {...{onClick: onSubtraction}}>-</Button>
+    <OppButn {...{onClick: onSubtraction, oppSelected: '-'}} />
   </>
 }
 
@@ -92,7 +96,7 @@ const Subtraction = ({inputVal1, inputVal2, setOppSubtraction}) => {
 export default function Calculator() {
   const [inputVal1, setInputVal1] = useState()
   const [inputVal2, setInputVal2] = useState()
-  const [multiplyResults, setOppMultiply] = useState()
+  const [multiplicationResults, setOppMultiply] = useState()
   const [divisionResults, setOppDivide] = useState()
   const [additionResults, setOppAddition] = useState()
   const [subtractionResults, setOppSubtraction] = useState()
@@ -105,12 +109,12 @@ export default function Calculator() {
     <NumInputs {...{inputVal1, inputVal2, setInputVal1, setInputVal2}} />
     <br />
     <Box {...{align: 'center'}}>
-      <Multiplication {...{inputVal1, inputVal2, setOppMultiply, multiplyResults}} />
+      <Multiplication {...{inputVal1, inputVal2, setOppMultiply, multiplicationResults}} />
       <Division {...{inputVal1, inputVal2, divisionResults, setOppDivide}}/>
       <Addition {...{inputVal1, inputVal2, additionResults, setOppAddition}}/>
       <Subtraction {...{inputVal1, inputVal2, subtractionResults, setOppSubtraction}} />
     </Box>
-    <Box>Your Multiplication Results Are: {multiplyResults}</Box>
+    <Box>Your Multiplication Results Are: {multiplicationResults}</Box>
     <Box>Your Division Results Are: {divisionResults}</Box>
     <Box>Your Addition Results Are: {additionResults}</Box>
     <Box>Your Subtraction Results Are: {subtractionResults}</Box>
