@@ -59,27 +59,27 @@ export default function TempConversionCalc() {
             <Tbody>
               <Tr>
                 <Td> {inputVal} degrees Fahrenheit to Celsius </Td>
-                <Td> {fahrenheitToCelsius(inputVal) + ' C'} </Td>
+                <Td> {_.round(fahrenheitToCelsius(inputVal), 2) + ' C'} </Td>
               </Tr>
               <Tr>
                 <Td> {inputVal} degrees Fahrenheit to Kelvin </Td>
-                <Td> {fahrenheitToKelvin(inputVal) + ' K'} </Td>
+                <Td> {_.round(fahrenheitToKelvin(inputVal), 2) + ' K'} </Td>
               </Tr>
               <Tr>
-                <Td> {inputVal} Celsius to Fahrenheit </Td>
-                <Td> {celsiusToFahrenheit(inputVal) + ' F'} </Td>
+                <Td> {inputVal} degrees Celsius to Fahrenheit </Td>
+                <Td> {_.round(celsiusToFahrenheit(inputVal), 2) + ' F'} </Td>
               </Tr>
               <Tr>
-                <Td> {inputVal} Celsius to Kelvin </Td>
-                <Td> {celsiusToKelvin(inputVal) + ' K'} </Td>
+                <Td> {inputVal} degrees Celsius to Kelvin </Td>
+                <Td> {_.round(celsiusToKelvin(inputVal), 2) + ' K'} </Td>
               </Tr>
               <Tr>
-                <Td> {inputVal} Kelvin to Fahrenheit </Td>
-                <Td> {kelvinToFarenheit(inputVal) + ' F'} </Td>
+                <Td> {inputVal} degrees Kelvin to Fahrenheit </Td>
+                <Td> {_.round(kelvinToFarenheit(inputVal), 2) + ' F'} </Td>
               </Tr>
               <Tr>
-                <Td> {inputVal} Kelvin to Celsius </Td>
-                <Td> {kelvinToCelsius(inputVal) + ' C'} </Td>
+                <Td> {inputVal} degrees Kelvin to Celsius </Td>
+                <Td> {_.round(kelvinToCelsius(inputVal), 2) + ' C'} </Td>
               </Tr>
             </Tbody>
           </Table>
