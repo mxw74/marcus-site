@@ -5,7 +5,7 @@ import { useState } from "react"
 
 export default function Home() {
   return <Container {...{bg: 'none', padding: 2, align: 'center'}}>
-    <Heading>My Sites</Heading>
+    <Heading>Marcus' Projects </Heading>
     <Stack>
       <Link {...{href: '../conversion-calc'}}> Conversion Calculator</Link>
       <Link {...{href: '/calculator'}}>Calculator with Buttons</Link>
