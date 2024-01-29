@@ -1,7 +1,7 @@
 import { Box, Button, Container, HStack, Heading, Input, SimpleGrid, Text } from "@chakra-ui/react"
 import { useState } from "react"
 
-const NumInputs = ({inputVal1, inputVal2, setInputVal1, setInputVal2}) => {
+const NumInputs = ({ setInputVal1, setInputVal2}) => {
 
   const onChange1 = (evt) => {
     setInputVal1(evt.target.value)

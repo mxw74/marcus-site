@@ -6,9 +6,9 @@ const MyHeader = () => {
   return <Text {...{fontSize:'26px', align:'center', color:'white'}}>Conversion Calculator App</Text>
 }
 
-const NumInput = () => {
-  <input {...{type:'number', placeholder:'input goes here'}}/>
-}
+// const NumInput = () => {
+//   <input {...{type:'number', placeholder:'input goes here'}}/>
+// }
 
 const kelvinToCelsius = (num) => {
   return num - 273
@@ -35,7 +35,6 @@ export const TemperaturePage = () => {
 export default function ConversionCalc() {
   return <Box {...{bg: 'blue', padding: 2}}>
     <MyHeader/>
-    <NumInput/>
     <TemperaturePage />
   </Box>
 }

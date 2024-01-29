@@ -1,50 +1,69 @@
-import { Box, Container, Input } from "@chakra-ui/react"
+import { Box, Button, Container, Heading, Input, SimpleGrid, Text } from "@chakra-ui/react"
 import { useState } from "react"
+import _ from "lodash"
 
-const fahrenheitToCelsius = (num) => {
-  return (num - 32) * (5/9)
-}
+const NumInput = ({setInputVal}) => {
 
-const fahrenheitToKelvin = (num) => {
-  return (num - 32) * (5/9) + 273.15
-}
+  const onChange1 = (evt) => {
+    setInputVal(_.toNumber(evt.target.value))
+  }
 
-const celsiusToFahrenheit = (num) => {
-  return (num * 9/5) + 32
-}
-
-const celsiusToKelvin = (num) => {
-
-}
-
-const kelvinToCelsius = (num) => {
-  return num - 273
-}
-
-const kelvinToFarenheit = (num) => {
-
-}
-
-
-
-const NumInput = () => {
-  return <Input {...{type:'number', placeholder:'input goes here'}}/>
+  return <Input {...{type:'number', placeholder:'input goes here', onChange: onChange1}}/>
 }
 
 export default function TempConversionCalc() {
-  const [degreesFahrenheit, setDegreesFahrenheit] = useState()
-  const [degreesKelvin, setDegreesKelvin] = useState()
-  const [degreesCelsius, setDegreesCelcius] = useState()
-  console.log(fahrenheitToCelsius(32) + ' f to c')
-  console.log(fahrenheitToKelvin(0) + ' f to k')
-  console.log(celsiusToFahrenheit() + 'c to f')
-  console.log(celsiusToKelvin() + ' c to k')
-  console.log(kelvinToCelsius() + ' k to c')
-  console.log(kelvinToFarenheit() + ' k to f')
+  const [inputVal, setInputVal] = useState(0)
 
-  return <Container>
-    <NumInput />
-    <Box> F to C results: {fahrenheitToCelsius(degreesFahrenheit)}</Box>
+  const fahrenheitToCelsius = (f) => {
+    return (f - 32) * (5/9)
+  }
+  
+  const fahrenheitToKelvin = (f) => {
+    return (f - 32) * 5/9 + 273.15
+  }
+  
+  const celsiusToFahrenheit = (c) => {
+    return (c * 9/5) + 32
+  }
+  
+  const celsiusToKelvin = (c) => {
+    return c + 273.15
+  }
+  
+  const kelvinToCelsius = (k) => {
+    return k - 273
+  }
+  
+  const kelvinToFarenheit = (k) => {
+    return (k - 273.15) * 1.8 + 32
+  }
+
+  const p = 5
+  const my = 5
+
+  return <Container {...{align: 'center'}}>
+    <Heading>Kelvin to Fahrenheit to Celsius Conversion Calc</Heading>
+    <Text {...{my}}>Input a value you would like to convert and allow the code to do the work.</Text>
+    <NumInput {...{inputVal, setInputVal}}/>
+    <br />
+    <br />
+    <Box>
+      <Heading {...{fontSize: '20px', my}}>Conversion Results:</Heading>
+      <SimpleGrid {...{columns: 2, rows: 6, border: 'solid'}}>
+        <Text {...{border: 'solid', p}}>Fahrenheit to Celsius</Text>
+        <Text {...{border: 'solid', p}}>{fahrenheitToCelsius(inputVal) + ' C'}</Text>
+        <Text {...{border: 'solid', p}}>Fahrenheit to Kelvin</Text>
+        <Text {...{border: 'solid', p}}>{fahrenheitToKelvin(inputVal) + ' K'}</Text>
+        <Text {...{border: 'solid', p}}>Celsius to Fahrenheit</Text>
+        <Text {...{border: 'solid', p}}>{celsiusToFahrenheit(inputVal) + ' F'}</Text>
+        <Text {...{border: 'solid', p}}>Celsius to Kelvin</Text>
+        <Text {...{border: 'solid', p}}>{celsiusToKelvin(inputVal) + ' K'}</Text>
+        <Text {...{border: 'solid', p}}>Kelvin to Fahrenheit</Text>
+        <Text {...{border: 'solid', p}}>{kelvinToFarenheit(inputVal) + ' F'}</Text>
+        <Text {...{border: 'solid', p}}>Kelvin to Celsius</Text>
+        <Text {...{border: 'solid', p}}>{kelvinToCelsius(inputVal) + ' C'}</Text>
+      </SimpleGrid>
+    </Box>
 
   </Container>
 }
