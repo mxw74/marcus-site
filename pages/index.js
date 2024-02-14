@@ -12,6 +12,7 @@ export default function Home() {
       <Link {...{href: '/about'}}>About</Link>
       <Link {...{href: '/two-box-calc'}}>Two Field Calculator</Link>
       <Link {...{href: '/temp-conversion-calc'}}>Celsius to Farenheit to Kelvin</Link>
+      <Link {...{href: '/temp-button-conversion'}}>Temp Conversion with Buttons</Link>
     </Stack>
   </Container>
 }
