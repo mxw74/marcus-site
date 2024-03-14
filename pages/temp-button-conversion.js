@@ -11,13 +11,9 @@ export default function TempButtonConversionCalc() {
 
 const TempInner = () => {
   const [inputDegrees, setInputDegrees] = useState('')
-  const [inputType, setInputType] = useState('undefined units')
-  const [outputType, setOutputType] = useState('undefined units')
+  const [inputType, setInputType] = useState('')
+  const [outputType, setOutputType] = useState('')
   let outputDegrees = inputDegrees
-
-  const NumInput = ({onChange}) => {
-    return <Input {...{placeholder: 'Input Degrees to Convert', onChange, name: 'numberInput'}}></Input>
-  }
 
   const ConversionButton = ({onClick, unitVal, shadow, colorScheme}) => {
     // if (unitVal == 'Celsius') {
@@ -64,7 +60,7 @@ const TempInner = () => {
   }
 
   if (inputType == outputType) {
-      outputDegrees = outputDegrees
+      outputDegrees = inputDegrees
   } if (inputType == 'Celsius' && outputType == 'Fahrenheit') {
       outputDegrees = celsiusToFahrenheit(outputDegrees)
   } if (inputType == 'Celsius' && outputType == 'Kelvin') {
@@ -80,8 +76,10 @@ const TempInner = () => {
   }
 
   return <Container>
-    <NumInput {...{onChange: onChange1}}/>
-    {inputDegrees} {inputType}
+    <Input {...{placeholder: 'Input number to convert', onChange: onChange1}}/>
+    {inputType && <Container>
+      {inputDegrees} {inputType}
+    </Container>}
     <Container>
         <ConversionButton {...{onClick: inputClick, unitVal: 'Celsius', colorScheme: 'facebook'}}/>
         <ConversionButton {...{onClick: inputClick, unitVal: 'Fahrenheit'}}/>
@@ -92,8 +90,9 @@ const TempInner = () => {
         <ConversionButton {...{onClick: outputClick, unitVal: 'Celsius'}}/> 
         <ConversionButton {...{onClick: outputClick, unitVal: 'Fahrenheit'}}/>
         <ConversionButton {...{onClick: outputClick, unitVal: 'Kelvin'}}/>
-      </Container>
-      {outputDegrees} {outputType}
+    </Container>
+      {outputType && <Container {...{m: 10, border: 'solid', p: 10, bg: 'gray', fontSize: 20, color: 'white'}}>{outputDegrees} {outputType}
+      </Container>}
   </Container>
 }
 
