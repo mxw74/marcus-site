@@ -4,6 +4,9 @@ import { useState } from "react";
 
 // const numClicked = ['C', '+/-', '%', '/', 7, 8, 9, 'X', 4, 5, 6, '-', 1, 2, 3, '+', 0, '.', '=']
 
+// one button selected and only see one output 
+// reset calculations and selected buttons
+
 
 
 const NumButn = ({numClicked, onClick, border}) => {
